@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SeasonController;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,3 +18,10 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/products', [ProductController::class, 'index']);
+Route::get('/products/{product_id}', [ProductController::class, 'index']);
+Route::post('/products/{product_id}/update', [ProductController::class, 'update']);
+Route::post('/products/register', [ProductController::class, 'register']);
+Route::post('/products/search', [ProductController::class, 'search']);
+Route::post('/products/{product_id}/delete', [ProductController::class, 'delete']);

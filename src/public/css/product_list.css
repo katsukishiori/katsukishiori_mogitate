@@ -1,0 +1,151 @@
+body {
+  background-color: #F5F5F5;
+}
+
+.container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.container-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 50px;
+}
+
+.container-title h1 {
+  padding-left: 30px;
+  font-size: 25px;
+}
+
+.add__button {
+  margin-left: auto;
+  margin-right: 50px;
+}
+
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #F2AD49;
+  color: #4B4B4B;
+  text-decoration: none;
+  border-radius: 5px;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px #DCDCDC;
+}
+
+.button:hover {
+  background-color: #D49740;
+}
+
+.left-menu {
+  width: 30%;
+  padding: 10px;
+}
+
+.form-control {
+  width: 90%;
+  padding: 10px 5px;
+  font-size: 15px;
+  color: #DCDCDC;
+  border: 1px solid #ccc;
+  border-radius: 30px;
+}
+
+.btn {
+  margin-top: 20px;
+  width: 95%;
+  height: 30px;
+  border: none;
+  border-radius: 3px;
+  background: #EEC944;
+  color: #000;
+  cursor: pointer;
+  box-shadow: 2px 2px 2px #DCDCDC;
+}
+
+.btn:hover {
+  background-color: #D7B63C;
+}
+
+.form-choice {
+  width: 90%;
+  padding: 10px 5px;
+  font-size: 15px;
+  color: #DCDCDC;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.main-contents {
+  width: 70%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.card {
+  flex: 0 1 calc(33.333% - 10px);
+  background-color: #fff;
+  box-sizing: border-box;
+  border-radius: 5px;
+  box-shadow: 2px 2px 2px #DCDCDC;
+}
+
+.card__img img {
+  width: 100%;
+  height: auto;
+  border-radius: 5px 5px 0px 0px;
+}
+
+.card__container {
+  display: flex;
+  justify-content: space-between;
+  padding: 0px 5px;
+}
+
+p.text {
+  margin: 10px 5px;
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.pagination a, .pagination span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  margin: 0 4px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  text-decoration: none;
+  color: #000;
+  background-color: #fff;
+  font-size: 16px;
+}
+
+.pagination a:hover {
+  background-color: #E0DFDE;
+}
+
+.pagination span {
+  background-color: #EEC944;
+  color: #fff;
+  border: 1px solid #EEC944;
+}
+
+.pagination .arrow {
+  background-color: #fff;
+  color: #EEC944;
+  border: none;
+}
