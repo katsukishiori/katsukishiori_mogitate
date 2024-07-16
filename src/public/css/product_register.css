@@ -39,20 +39,20 @@ body {
 }
 
 .multi-select {
-  color: red; /* テキストの色を赤に設定 */
+  color: red;
 }
 
 .radio-group {
-            display: flex; /* ラジオボタンを横並びにする */
-        }
+  display: flex;
+}
 
-        .radio-group label {
-            margin-right: 20px; /* 右側にスペースを設定 */
-        }
+.radio-group label {
+  margin-right: 20px;
+}
 
-         .radio-group label:last-child {
-            margin-right: 0; /* 最後のラジオボタンの右側のスペースを削除 */
-        }
+.radio-group label:last-child {
+  margin-right: 0;
+}
 
 .form-item-input {
   border: 1px solid #ddd;
@@ -122,7 +122,6 @@ body {
   background: #EECA44;
   color: #7A7A7A;
   box-shadow: 2px 2px 2px #DCDCDC;
-
 }
 
 .form-btn:hover {
