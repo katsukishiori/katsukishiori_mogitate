@@ -33,7 +33,7 @@
         </div>
         <div class="main-contents">
             @foreach ($products as $product)
-            <div class="card">
+            <a href="{{ url('/products/' . $product->id) }}" class="card">
                 <div class="card__img">
                     <img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}の画像">
                 </div>
@@ -41,7 +41,7 @@
                     <p class="text">{{ $product->name }}</p>
                     <p class="text">¥{{ $product->price }}</p>
                 </div>
-            </div>
+            </a>
             @endforeach
         </div>
     </div>

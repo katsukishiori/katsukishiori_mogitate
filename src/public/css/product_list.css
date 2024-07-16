@@ -97,6 +97,13 @@ body {
   box-sizing: border-box;
   border-radius: 5px;
   box-shadow: 2px 2px 2px #DCDCDC;
+  text-decoration: none;
+  color: inherit;
+}
+
+.card:hover {
+  opacity: 0.5;
+  filter: alpha(opacity=50);
 }
 
 .card__img img {
