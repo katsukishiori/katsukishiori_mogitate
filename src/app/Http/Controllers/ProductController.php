@@ -19,4 +19,10 @@ class ProductController extends Controller
     {
         return view('product_register');
     }
+
+    public function detail($id)
+    {
+        $product = Product::findOrFail($id);
+        return view('product_detail', ['product' => $product]);
+    }
 }

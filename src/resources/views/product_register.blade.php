@@ -8,7 +8,6 @@
 
 <body>
 
-
     <form class="form" name="contact" method="POST">
         <div class="container-title">
             <h1>商品登録</h1>

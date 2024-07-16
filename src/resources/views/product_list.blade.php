@@ -68,5 +68,5 @@
             @endif
     </div>
 
-    <body>
-        @endsection
+</body>
+@endsection
