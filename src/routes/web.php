@@ -20,8 +20,4 @@ Route::get('/', function () {
 });
 
 Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/{product_id}', [ProductController::class, 'index']);
-Route::post('/products/{product_id}/update', [ProductController::class, 'update']);
-Route::post('/products/register', [ProductController::class, 'register']);
-Route::post('/products/search', [ProductController::class, 'search']);
-Route::post('/products/{product_id}/delete', [ProductController::class, 'delete']);
+Route::get('/products/register', [ProductController::class, 'show']);

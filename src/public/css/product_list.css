@@ -50,9 +50,12 @@ body {
   width: 90%;
   padding: 10px 5px;
   font-size: 15px;
-  color: #DCDCDC;
   border: 1px solid #ccc;
   border-radius: 30px;
+}
+
+.form-control::placeholder {
+  color: #DCDCDC;
 }
 
 .btn {

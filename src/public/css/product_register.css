@@ -1,0 +1,127 @@
+body {
+  background-color: #F5F5F5;
+}
+
+.container-title {
+  align-items: center;
+  padding-top: 50px;
+}
+
+.container-title h1 {
+  font-size: 25px;
+}
+
+.form{
+  width: 60%;
+  margin: 20px auto;
+}
+.form-item {
+  padding: 15px 0;
+  width: 100%;
+  align-items: center;
+}
+
+.form-item-label {
+  width: 100%;
+  font-size: 16px;
+  color: #8A8A8A;
+}
+.form-item-label-required {
+  margin-right: 8px;
+  margin-left: 10px;
+  padding: 5px;
+  width: 48px;
+  height: 15px;
+  text-align: center;
+  background: #E83425;
+  color: #fff;
+  font-size: 14px;
+}
+
+.multi-select {
+  color: red; /* テキストの色を赤に設定 */
+}
+
+.radio-group {
+            display: flex; /* ラジオボタンを横並びにする */
+        }
+
+        .radio-group label {
+            margin-right: 20px; /* 右側にスペースを設定 */
+        }
+
+         .radio-group label:last-child {
+            margin-right: 0; /* 最後のラジオボタンの右側のスペースを削除 */
+        }
+
+.form-item-input {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 0 10px;
+  height: 40px;
+  width: 100%;
+  font-size: 15px;
+}
+
+.form-item-input::placeholder {
+  color: #DCDCDC;
+}
+
+.form-item-textarea {
+  border: 1px solid #ddd;
+  border-radius: 3px;
+  padding: 0 10px;
+  height: 200px;
+  width: 100%;
+  font-size: 18px;
+}
+
+.form-item-textarea::placeholder {
+  color: #DCDCDC;
+}
+
+.button-container {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.form-btn__back {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  padding: 5px 10px;
+  width: 200px;
+  height: 45px;
+  font-weight: bold;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  background: #E0DFDE;
+  color: #7A7A7A;
+  box-shadow: 2px 2px 2px #DCDCDC;
+}
+
+.form-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  padding: 5px 10px;
+  width: 200px;
+  height: 45px;
+  font-weight: bold;
+  font-size: 18px;
+  border: none;
+  cursor: pointer;
+  text-align: center;
+  background: #E0DFDE;
+  color: #7A7A7A;
+  background: #EECA44;
+  color: #7A7A7A;
+  box-shadow: 2px 2px 2px #DCDCDC;
+
+}
+

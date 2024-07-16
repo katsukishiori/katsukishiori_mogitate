@@ -10,7 +10,7 @@
     <div class="container-title">
         <h1>商品一覧</h1>
         <div class="add__button">
-            <a href="#" class="button">+商品を追加</a>
+            <a href="/products/register" class="button">+商品を追加</a>
         </div>
     </div>
 
@@ -44,9 +44,8 @@
             </div>
             @endforeach
         </div>
-
-
     </div>
+
     <div class="pagination">
         @if ($products->onFirstPage())
         <span class="arrow">&lt;</span>
@@ -68,7 +67,6 @@
             <span class="arrow">&gt;</span>
             @endif
     </div>
-
 
     <body>
         @endsection
