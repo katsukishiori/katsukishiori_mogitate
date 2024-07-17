@@ -35,11 +35,15 @@
                 季節<span class="form-item-label-required">必須</span>
                 <span class="multi-select">複数選択可</span>
             </p>
-            <div class="radio-group">
-                <label><input type="radio" name="season" value="spring" />春</label>
-                <label><input type="radio" name="season" value="summer" />夏</label>
-                <label><input type="radio" name="season" value="autumn" />秋</label>
-                <label><input type="radio" name="season" value="winter" />冬</label>
+            <div class="checkbox-group">
+                <input type="checkbox" id="checkbox1">
+                <label for="checkbox1" class="label_test">春</label>
+                <input type="checkbox" id="checkbox2">
+                <label for="checkbox2" class="label_test">夏</label>
+                <input type="checkbox" id="checkbox3">
+                <label for="checkbox3" class="label_test">秋</label>
+                <input type="checkbox" id="checkbox4">
+                <label for="checkbox4" class="label_test">冬</label>
             </div>
         </div>
         <div class="form-item">

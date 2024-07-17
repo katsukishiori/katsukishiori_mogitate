@@ -42,16 +42,51 @@ body {
   color: red;
 }
 
-.radio-group {
-  display: flex;
+input[type=checkbox] {
+  display: none;
 }
 
-.radio-group label {
-  margin-right: 20px;
+.label_test:after {
+  position: absolute;
+  content: "";
+  display: block;
+  top: 50%;
+  left: 15px;
+  margin: -10px 0 0 -2px;
+  width: 17px;
+  height: 17px;
+  background:  #4B4B4B;
+  border-radius: 50%;
 }
 
-.radio-group label:last-child {
-  margin-right: 0;
+.label_test {
+  position: relative;
+  padding: 0 0 0 40px;
+}
+
+.label_test:after, .label_test:before{
+  position: absolute;
+  content: "";
+  display: block;
+  top: 50%;
+}
+
+/*チェックマーク*/
+.label_test:before {
+  left: 20px;
+  margin-top: -7px;
+  width: 4px;
+  height: 7px;
+  border-right: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  transform: rotate(45deg);
+  opacity: 0;
+  z-index: 1; /* 前面に持ってくる */
+}
+
+/*チェックボックスがチェックされた時に動作する内容*/
+  input[type=checkbox]:checked + .label_test:before {
+  opacity: 1;
 }
 
 .form-item-input {
@@ -74,6 +109,7 @@ body {
   height: 200px;
   width: 100%;
   font-size: 18px;
+  font-weight: lighter;
 }
 
 .form-item-textarea::placeholder {
@@ -92,10 +128,10 @@ body {
   justify-content: center;
   border-radius: 6px;
   padding: 5px 10px;
-  width: 200px;
-  height: 45px;
+  width: 180px;
+  height: 40px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 15px;
   border: none;
   cursor: pointer;
   text-align: center;
@@ -110,10 +146,10 @@ body {
   justify-content: center;
   border-radius: 6px;
   padding: 5px 10px;
-  width: 200px;
-  height: 45px;
+  width: 180px;
+  height: 40px;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 15px;
   border: none;
   cursor: pointer;
   text-align: center;
