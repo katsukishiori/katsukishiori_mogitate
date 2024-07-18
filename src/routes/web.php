@@ -22,3 +22,5 @@ Route::get('/', function () {
 Route::get('/products', [ProductController::class, 'index']);
 Route::get('/products/register', [ProductController::class, 'show']);
 Route::get('/products/{id}', [ProductController::class, 'detail'])->name('products.show');
+Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
+Route::post('/products/register', [ProductController::class, 'register'])->name('products.register');

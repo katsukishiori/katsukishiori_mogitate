@@ -16,11 +16,11 @@
 
     <div class="container">
         <div class="left-menu">
-            <form class="form__button" method="GET" action="">
+            <form class="form__button" action="{{ route('products.search') }}" method="GET">
                 <div class="form-group">
-                    <input type="text" name="item" id="item" class="form-control" placeholder=商品名で検索 value="">
+                    <input type="text" name="input" id="item" class="form-control" placeholder=商品名で検索>
                 </div>
-                <button type="submit" class="btn btn-primary">検索</button>
+                <button type=" submit" class="btn btn-primary">検索</button>
             </form>
             <h2>価格順で表示</h2>
             <form class="sort-form" action="detail.html" method="get">
@@ -43,6 +43,8 @@
                 </div>
             </a>
             @endforeach
+
+
         </div>
     </div>
 
@@ -66,7 +68,10 @@
             @else
             <span class="arrow">&gt;</span>
             @endif
+
     </div>
+
+
 
 </body>
 @endsection

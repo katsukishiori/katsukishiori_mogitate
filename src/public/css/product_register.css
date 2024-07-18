@@ -116,6 +116,13 @@ input[type=checkbox] {
   color: #DCDCDC;
 }
 
+.form__error {
+  height: 20px;
+  color: #ff0000;
+  margin-top: 10px;
+  text-align: left;
+}
+
 .button-container {
   display: flex;
   gap: 20px;

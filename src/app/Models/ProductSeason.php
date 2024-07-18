@@ -8,4 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class ProductSeason extends Model
 {
     use HasFactory;
+
+    protected $table = 'product_season';
+    protected $fillable = ['product_id', 'season_id'];
+
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+
+    public function season()
+    {
+        return $this->belongsTo(Season::class);
+    }
 }

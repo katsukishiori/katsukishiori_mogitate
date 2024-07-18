@@ -28,6 +28,12 @@
                 </div>
                 <div class="form-item">
                     <p class="form-item-label">季節</p>
+                    <div class="checkbox-group">
+                        @foreach(['春', '夏', '秋', '冬'] as $season)
+                        <input type="checkbox" id="checkbox{{ $season }}" name="season[]" value="{{ $season }}" {{ in_array($season, old('season', $season_names)) ? 'checked' : '' }}>
+                        <label for="checkbox{{ $season }}" class="label_test">{{ $season }}</label>
+                        @endforeach
+                    </div>
 
                 </div>
             </div>
