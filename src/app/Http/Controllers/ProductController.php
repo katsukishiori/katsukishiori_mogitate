@@ -8,6 +8,7 @@ use App\Models\Season;
 use App\Models\ProductSeason;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -37,13 +38,25 @@ class ProductController extends Controller
         return view('product_detail', ['product' => $product, 'season_names' => $season_names]);
     }
 
-    // 商品検索
+    // 検索
     public function search(Request $request)
     {
-        $query = $request->input('input');
-        $products = Product::where('name', 'LIKE', "%{$query}%")->get();
+        // クエリビルダーを初期化
+        $query = Product::query();
 
-        return view('product_list', ['products' => $products]);
+        // 検索クエリを取得
+        $search = $request->input('query', null);
+
+        // 検索クエリが存在する場合、条件を追加
+        if (!is_null($search)) {
+            $query->where('name', 'like', '%' . $search . '%');
+        }
+
+        // ページネーションを適用
+        $products = $query->paginate(6);
+
+        // ビューにデータを渡す
+        return view('product_list', compact('products', 'search'));
     }
 
     // 商品登録
@@ -77,12 +90,11 @@ class ProductController extends Controller
             }
         }
 
-        // 成功時のリダイレクトなどの処理
         return redirect()->route('products.register')->with('success', '商品が登録されました。');
     }
 
     // 商品更新
-    public function update(Request $request, $id)
+    public function update(ProductRequest $request, $id)
     {
         // フォームから送信されたデータを取得
         $product = Product::findOrFail($id);
@@ -106,18 +118,25 @@ class ProductController extends Controller
         }
 
         // 季節の更新
-        $selectedSeasons = $request->input('seasons', []);
+        $selectedSeasons = $request->input('season', []); // 'season' を使用
+        dd($selectedSeasons);
         $seasonIds = Season::whereIn('name', $selectedSeasons)->pluck('id')->toArray();
+
+        // 古い季節を削除し、新しい季節を追加
         $product->seasons()->sync($seasonIds);
+
+
 
         // データベースに変更を保存
         $product->save();
 
 
+
         // 更新完了メッセージをフラッシュ
         session()->flash('message', '商品情報が更新されました');
 
+        dd($request->all());
         // 更新後にリダイレクト
-        return redirect()->route('products.index', ['id' => $product->id]);
+        return redirect()->route('products.index');
     }
 }

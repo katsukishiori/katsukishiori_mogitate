@@ -9,25 +9,27 @@
 <body>
     <div class="container-title">
         <h1>商品一覧</h1>
+        @if(empty($search))
         <div class="add__button">
             <a href="/products/register" class="button">+商品を追加</a>
         </div>
+        @endif
     </div>
 
     <div class="container">
         <div class="left-menu">
             <form class="form__button" action="{{ route('products.search') }}" method="GET">
                 <div class="form-group">
-                    <input type="text" name="input" id="item" class="form-control" placeholder=商品名で検索>
+                    <input type="text" name="query" id="item" class="form-control" placeholder=商品名で検索 value="{{ request('query') }}">
                 </div>
                 <button type=" submit" class="btn btn-primary">検索</button>
             </form>
             <h2>価格順で表示</h2>
             <form class="sort-form" action="detail.html" method="get">
-                <select class="form-choice" name="select">
-                    <option value="">価格で並べ替え</option>
-                    <option value="高い順に表示">高い順に表示</option>
-                    <option value="安い順に表示">安い順に表示</option>
+                <select class="form-choice" name="sort_by">
+                    <option value="" disabled {{ !request('sort_by') ? 'selected' : '' }}>価格で並べ替え</option>
+                    <option value="high_to_low" {{ request('sort_by') == 'high_to_low' ? 'selected' : '' }}>高い順に表示</option>
+                    <option value="low_to_high" {{ request('sort_by') == 'low_to_high' ? 'selected' : '' }}>安い順に表示</option>
                 </select>
             </form>
         </div>
@@ -43,11 +45,10 @@
                 </div>
             </a>
             @endforeach
-
-
         </div>
     </div>
 
+    @if(empty($search))
     <div class="pagination">
         @if ($products->onFirstPage())
         <span class="arrow">&lt;</span>
@@ -70,6 +71,7 @@
             @endif
 
     </div>
+    @endif
 
 
 
