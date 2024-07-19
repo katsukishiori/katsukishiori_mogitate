@@ -43,7 +43,6 @@ class ProductController extends Controller
     {
         // クエリビルダーを初期化
         $query = Product::query();
-
         // 検索クエリを取得
         $search = $request->input('query', null);
 
@@ -52,11 +51,19 @@ class ProductController extends Controller
             $query->where('name', 'like', '%' . $search . '%');
         }
 
-        // ページネーションを適用
-        $products = $query->paginate(6);
+        // 並び順の取得
+        $sortBy = $request->input('sort_by');
 
-        // ビューにデータを渡す
-        return view('product_list', compact('products', 'search'));
+        // 並び順に基づく条件の追加
+        if ($sortBy == 'high_to_low') {
+            $query->orderBy('price', 'desc');
+        } elseif ($sortBy == 'low_to_high') {
+            $query->orderBy('price', 'asc');
+        }
+
+        $products = $query->paginate(6)->appends(request()->query());
+
+        return view('product_list', compact('products', 'search', 'sortBy'));
     }
 
     // 商品登録

@@ -25,8 +25,8 @@
                 <button type=" submit" class="btn btn-primary">検索</button>
             </form>
             <h2>価格順で表示</h2>
-            <form class="sort-form" action="detail.html" method="get">
-                <select class="form-choice" name="sort_by">
+            <form class="sort-form" action="{{ route('products.search') }}" method="get">
+                <select class="form-choice" name="sort_by" onchange="this.form.submit()">
                     <option value="" disabled {{ !request('sort_by') ? 'selected' : '' }}>価格で並べ替え</option>
                     <option value="high_to_low" {{ request('sort_by') == 'high_to_low' ? 'selected' : '' }}>高い順に表示</option>
                     <option value="low_to_high" {{ request('sort_by') == 'low_to_high' ? 'selected' : '' }}>安い順に表示</option>
