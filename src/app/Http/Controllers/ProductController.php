@@ -43,10 +43,8 @@ class ProductController extends Controller
     {
         // クエリビルダーを初期化
         $query = Product::query();
-        // 検索クエリを取得
         $search = $request->input('query', null);
 
-        // 検索クエリが存在する場合、条件を追加
         if (!is_null($search)) {
             $query->where('name', 'like', '%' . $search . '%');
         }
