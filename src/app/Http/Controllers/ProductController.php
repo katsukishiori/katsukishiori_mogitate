@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Season;
 use App\Models\ProductSeason;
 use App\Http\Requests\ProductRequest;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -22,6 +23,7 @@ class ProductController extends Controller
         return view('product_register');
     }
 
+    // 商品詳細表示
     public function detail($id)
     {
         $product = Product::findOrFail($id);
@@ -35,6 +37,7 @@ class ProductController extends Controller
         return view('product_detail', ['product' => $product, 'season_names' => $season_names]);
     }
 
+    // 商品検索
     public function search(Request $request)
     {
         $query = $request->input('input');
@@ -43,23 +46,21 @@ class ProductController extends Controller
         return view('product_list', ['products' => $products]);
     }
 
+    // 商品登録
     public function register(ProductRequest $request)
     {
         $validated = $request->validated();
 
-        // ファイルのアップロード処理
         $path = $request->file('document')->store('public/images');
         $filename = basename($path);
 
-        // 商品データの保存
         $product = new Product();
         $product->name = $validated['name'];
         $product->price = $validated['price'];
-        $product->image = $filename; // 保存したファイル名
+        $product->image = $filename;
         $product->description = $validated['description'];
         $product->save();
 
-        // 季節データの保存
         if (isset($validated['season'])) {
             foreach ($validated['season'] as $seasonName) {
                 // シーズン名からシーズンIDを取得
@@ -78,5 +79,45 @@ class ProductController extends Controller
 
         // 成功時のリダイレクトなどの処理
         return redirect()->route('products.register')->with('success', '商品が登録されました。');
+    }
+
+    // 商品更新
+    public function update(Request $request, $id)
+    {
+        // フォームから送信されたデータを取得
+        $product = Product::findOrFail($id);
+        $product->name = $request->name;
+        $product->price = $request->price;
+        $product->description = $request->description;
+
+        // 画像のアップロード処理
+        if ($request->hasFile('document')) {
+            // 古い画像が存在する場合、それを削除する
+            if ($product->image) {
+                Storage::delete('public/images/' . $product->image);
+            }
+
+            // 新しい画像をサーバーに保存
+            $imageName = time() . '.' . $request->document->extension();
+            $request->document->storeAs('public/images', $imageName);
+
+            // 新しい画像のファイル名をデータベースに保存
+            $product->image = $imageName;
+        }
+
+        // 季節の更新
+        $selectedSeasons = $request->input('seasons', []);
+        $seasonIds = Season::whereIn('name', $selectedSeasons)->pluck('id')->toArray();
+        $product->seasons()->sync($seasonIds);
+
+        // データベースに変更を保存
+        $product->save();
+
+
+        // 更新完了メッセージをフラッシュ
+        session()->flash('message', '商品情報が更新されました');
+
+        // 更新後にリダイレクト
+        return redirect()->route('products.index', ['id' => $product->id]);
     }
 }
