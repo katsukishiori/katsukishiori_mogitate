@@ -83,9 +83,12 @@ h2 {
   width: 90%;
   padding: 10px 5px;
   font-size: 15px;
-  color: #DCDCDC;
+  color: #787878;
   border: 1px solid #ccc;
   border-radius: 5px;
+   appearance: none; /* デフォルトの矢印を非表示 */
+    -webkit-appearance: none; /* Safari のために */
+    -moz-appearance: none; /* Firefox のために */
 }
 
 .main-contents {
@@ -166,3 +169,48 @@ p.text {
   color: #EEC944;
   border: none;
 }
+
+/* モーダル */
+.modal {
+  display: none; /* 初期状態で非表示 */
+  position: absolute;
+  margin-top: 10px;
+  left: 0;
+  border: 1px solid #EEC944;
+  padding: 0 10px;
+  width: 120px;
+  border-radius: 30px;
+}
+
+/* モーダルのコンテンツスタイル */
+.modal-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  color: #787878;
+}
+
+/* モーダルのクローズボタン */
+.close {
+  cursor: pointer;
+  font-size: 15px;
+  margin-left: auto;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #EEC944;
+  color: #EEC944;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.select-wrapper {
+  position: relative;
+}
+
+
+
+
+

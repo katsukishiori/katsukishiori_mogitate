@@ -25,13 +25,33 @@
                 <button type=" submit" class="btn btn-primary">検索</button>
             </form>
             <h2>価格順で表示</h2>
-            <form class="sort-form" action="{{ route('products.search') }}" method="get">
+            <!-- <form class="sort-form" action="{{ route('products.search') }}" method="get">
                 <select class="form-choice" name="sort_by" onchange="this.form.submit()">
                     <option value="" disabled {{ !request('sort_by') ? 'selected' : '' }}>価格で並べ替え</option>
                     <option value="high_to_low" {{ request('sort_by') == 'high_to_low' ? 'selected' : '' }}>高い順に表示</option>
                     <option value="low_to_high" {{ request('sort_by') == 'low_to_high' ? 'selected' : '' }}>安い順に表示</option>
                 </select>
+            </form> -->
+
+            <form class="sort-form" action="{{ route('products.search') }}" method="get" id="sort-form">
+                <div class="select-wrapper">
+                    <select class="form-choice" id="sort-select" name="sort_by">
+                        <option value="" disabled selected>価格で並べ替え</option>
+                        <option value="high_to_low" {{ request('sort_by') == 'high_to_low' ? 'selected' : '' }}>高い順に表示</option>
+                        <option value="low_to_high" {{ request('sort_by') == 'low_to_high' ? 'selected' : '' }}>安い順に表示</option>
+                    </select>
+
+                    <!-- モーダルのHTML -->
+                    <div class="modal" id="modal">
+                        <div class="modal-content">
+                            <p id="modal-content">選択された並び替え条件はここに表示されます。</p>
+                            <span class="close" id="modal-close">&times;</span>
+                        </div>
+                    </div>
+                </div>
             </form>
+
+
         </div>
         <div class="main-contents">
             @foreach ($products as $product)
@@ -73,6 +93,61 @@
     </div>
     @endif
 
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const select = document.getElementById('sort-select');
+            const modal = document.getElementById('modal');
+            const modalContent = document.getElementById('modal-content');
+            const modalClose = document.getElementById('modal-close');
+            const resetButton = document.getElementById('reset-button');
+            const form = document.getElementById('sort-form');
+
+            // セレクトボックスの変更イベント
+            select.addEventListener('change', () => {
+                form.submit();
+            });
+
+            // 選択された値をモーダルに表示する関数
+            window.showModal = () => {
+                const selectedValue = select.options[select.selectedIndex].text;
+                modalContent.textContent = `選択された並び替え条件: ${selectedValue}`;
+                modal.style.display = 'block';
+                form.submit(); // 並び替えを実行
+            };
+
+            // ページがロードされたときにモーダルを表示する
+            window.addEventListener('load', () => {
+                const urlParams = new URLSearchParams(window.location.search);
+                const sortBy = urlParams.get('sort_by');
+                if (sortBy) {
+                    const selectedValue = select.options[select.selectedIndex].text;
+                    modalContent.textContent = `${selectedValue}`;
+                    modal.style.display = 'block';
+                }
+            });
+
+            // モーダルのクローズボタンのイベント
+            modalClose.addEventListener('click', () => {
+                select.selectedIndex = 0; // セレクトボックスをリセット
+                modal.style.display = 'none';
+                form.submit(); // フォームを送信
+            });
+            // リセットボタンのイベント
+            resetButton.addEventListener('click', () => {
+                select.selectedIndex = 0; // セレクトボックスをリセット
+                modal.style.display = 'none';
+                form.submit(); // フォームを送信
+            });
+
+            // モーダル外のクリックで閉じる（オプション）
+            window.addEventListener('click', (event) => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                    form.submit(); // フォームを送信
+                }
+            });
+        });
+    </script>
 
 
 </body>
