@@ -8,7 +8,13 @@
 
 <body>
     <div class="container-title">
-        <h1>商品一覧</h1>
+        <h1>
+            @if(isset($search) && $search != '')
+            "{{ $search }}"の 商品一覧
+            @else
+            商品一覧
+            @endif
+        </h1>
         @if(empty($search))
         <div class="add__button">
             <a href="/products/register" class="button">+商品を追加</a>
@@ -18,21 +24,16 @@
 
     <div class="container">
         <div class="left-menu">
-            <form class="form__button" action="{{ route('products.search') }}" method="GET">
+            <form class="form__button" action="{{ route('products.search') }}" method="GET" id="search-form">
                 <div class="form-group">
-                    <input type="text" name="query" id="item" class="form-control" placeholder=商品名で検索 value="{{ request('query') }}">
+                    <input type="text" name="query" id="item" class="form-control" placeholder="商品名で検索" value="{{ request('query') }}">
                 </div>
-                <button type=" submit" class="btn btn-primary">検索</button>
+                <button type="submit" class="btn btn-primary">検索</button>
             </form>
-            <h2>価格順で表示</h2>
-            <!-- <form class="sort-form" action="{{ route('products.search') }}" method="get">
-                <select class="form-choice" name="sort_by" onchange="this.form.submit()">
-                    <option value="" disabled {{ !request('sort_by') ? 'selected' : '' }}>価格で並べ替え</option>
-                    <option value="high_to_low" {{ request('sort_by') == 'high_to_low' ? 'selected' : '' }}>高い順に表示</option>
-                    <option value="low_to_high" {{ request('sort_by') == 'low_to_high' ? 'selected' : '' }}>安い順に表示</option>
-                </select>
-            </form> -->
 
+            <h2>価格順で表示</h2>
+
+            <!-- 並び替えフォーム -->
             <form class="sort-form" action="{{ route('products.search') }}" method="get" id="sort-form">
                 <div class="select-wrapper">
                     <select class="form-choice" id="sort-select" name="sort_by">
@@ -41,7 +42,7 @@
                         <option value="low_to_high" {{ request('sort_by') == 'low_to_high' ? 'selected' : '' }}>安い順に表示</option>
                     </select>
 
-                    <!-- モーダルのHTML -->
+                    <!-- モーダル -->
                     <div class="modal" id="modal">
                         <div class="modal-content">
                             <p id="modal-content">選択された並び替え条件はここに表示されます。</p>

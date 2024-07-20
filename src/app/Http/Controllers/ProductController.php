@@ -69,13 +69,18 @@ class ProductController extends Controller
     {
         $validated = $request->validated();
 
-        $path = $request->file('document')->store('public/images');
-        $filename = basename($path);
+        // 画像のアップロード処理
+        if ($request->hasFile('document')) {
+            $imageName = time() . '.' . $request->document->extension();
+            $request->document->storeAs('public/images', $imageName);
+        } else {
+            return redirect()->back()->withErrors(['document' => '商品画像を登録してください']);
+        }
 
         $product = new Product();
         $product->name = $validated['name'];
         $product->price = $validated['price'];
-        $product->image = $filename;
+        $product->image = $imageName;
         $product->description = $validated['description'];
         $product->save();
 
@@ -95,12 +100,14 @@ class ProductController extends Controller
             }
         }
 
-        return redirect()->route('products.register')->with('success', '商品が登録されました。');
+        return redirect()->route('products.index')->with('success', '商品が登録されました。');
     }
 
     // 商品更新
     public function update(ProductRequest $request, $id)
     {
+        $validated = $request->validated();
+
         // フォームから送信されたデータを取得
         $product = Product::findOrFail($id);
         $product->name = $request->name;
@@ -124,7 +131,7 @@ class ProductController extends Controller
 
         // 季節の更新
         $selectedSeasons = $request->input('season', []); // 'season' を使用
-        dd($selectedSeasons);
+
         $seasonIds = Season::whereIn('name', $selectedSeasons)->pluck('id')->toArray();
 
         // 古い季節を削除し、新しい季節を追加
@@ -140,7 +147,7 @@ class ProductController extends Controller
         // 更新完了メッセージをフラッシュ
         session()->flash('message', '商品情報が更新されました');
 
-        dd($request->all());
+
         // 更新後にリダイレクト
         return redirect()->route('products.index');
     }

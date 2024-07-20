@@ -10,6 +10,7 @@
     <div class="container">
         <form action="{{ route('products.update', ['product_id' => $product->id]) }}" enctype="multipart/form-data" method="POST">
             @csrf
+            @method('PUT')
             <div class="product-top">
                 <a class="product-list" href="/products">商品一覧</a> > {{ $product->name }}
             </div>
@@ -19,7 +20,7 @@
                     <img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}の画像">
                     <input type="file" name="document" class="form-control" value="{{ old('image') }}" />
                     <div class="form__error">
-                        @error('image')
+                        @error('document')
                         {{ $message }}
                         @enderror
                     </div>
@@ -45,6 +46,7 @@
                         </div>
                     </div>
                     <div class="form-item">
+
                         <p class="form-item-label">季節</p>
                         <div class="checkbox-group">
                             @foreach(['春', '夏', '秋', '冬'] as $season)

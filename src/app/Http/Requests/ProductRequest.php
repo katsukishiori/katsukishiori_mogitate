@@ -25,12 +25,19 @@ class ProductRequest extends FormRequest
     {
         return [
             'name' => ['required'],
-            'price' => ['required', 'string', 'between:0,10000',],
-            'season' => ['required', 'array'],
-            'season.*' => 'in:春,夏,秋,冬',
-            'description' => ['required'],
-            'document' => ['required', 'mimes:jpeg,png',],
+            'price' => ['required', 'numeric', 'between:0,10000',],
+            'season' => ['required'],
+            'description' => ['required', 'max:120'],
         ];
+
+        // フォームのメソッドに応じて画像フィールドのバリデーションを追加
+        if ($this->isMethod('post')) {
+            $rules['document'] = ['required', 'mimes:jpeg,png']; // 新規作成時には必須
+        } elseif ($this->isMethod('put') || $this->isMethod('patch')) {
+            $rules['document'] = ['nullable', 'mimes:jpeg,png']; // 更新時には任意
+        }
+
+    return $rules;
     }
 
     public function messages()
@@ -38,11 +45,9 @@ class ProductRequest extends FormRequest
         return [
             'name.required' => '商品名を入力してください',
             'price.required' => '値段を入力してください',
-            'price.string' => '数値で入力してください',
+            'price.numeric' => '数値で入力してください',
             'price.between' => '0~10000円以内で入力してください',
             'season.required' => '季節を選択してください',
-            'season.array' => '季節は配列形式で送信される必要があります',
-            'season.*.in' => '季節は春、夏、秋、冬のいずれかである必要があります',
             'description.required' => '商品説明を入力してください',
             'description.max' => '120文字以内で入力してください',
             'document.required' => '商品画像を登録してください',
