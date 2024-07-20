@@ -1,3 +1,8 @@
+body,html {
+  margin: 0;
+  padding: 0;
+}
+
 .header {
   background: #fff;
 }
@@ -10,7 +15,7 @@
 
 .header__logo {
   color: #EECA44;
+  font-family: cursive;
   text-decoration: none;
-  font-weight: bold;
   font-size: 24px;
 }

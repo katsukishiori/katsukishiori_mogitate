@@ -42,10 +42,12 @@
                         <option value="low_to_high" {{ request('sort_by') == 'low_to_high' ? 'selected' : '' }}>安い順に表示</option>
                     </select>
 
+                    <div class="line"></div>
+
                     <!-- モーダル -->
                     <div class="modal" id="modal">
                         <div class="modal-content">
-                            <p id="modal-content">選択された並び替え条件はここに表示されます。</p>
+                            <p id="modal-content"></p>
                             <span class="close" id="modal-close">&times;</span>
                         </div>
                     </div>
@@ -149,7 +151,6 @@
             });
         });
     </script>
-
 
 </body>
 @endsection
