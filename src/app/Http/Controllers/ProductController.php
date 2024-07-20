@@ -8,7 +8,6 @@ use App\Models\Season;
 use App\Models\ProductSeason;
 use App\Http\Requests\ProductRequest;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Facades\Log;
 
 class ProductController extends Controller
 {
@@ -130,25 +129,34 @@ class ProductController extends Controller
         }
 
         // 季節の更新
-        $selectedSeasons = $request->input('season', []); // 'season' を使用
+        $selectedSeasons = $request->input('season', []);
 
         $seasonIds = Season::whereIn('name', $selectedSeasons)->pluck('id')->toArray();
 
         // 古い季節を削除し、新しい季節を追加
         $product->seasons()->sync($seasonIds);
-
-
-
         // データベースに変更を保存
         $product->save();
 
-
-
-        // 更新完了メッセージをフラッシュ
         session()->flash('message', '商品情報が更新されました');
 
-
-        // 更新後にリダイレクト
         return redirect()->route('products.index');
+    }
+
+    // 削除
+    public function destroy($product_id)
+    {
+        // 商品の存在確認
+        $product = Product::find($product_id);
+
+        if (!$product) {
+            return redirect()->route('products.index')->with('error', '商品が見つかりません');
+        }
+
+        // 商品の削除
+        $product->delete();
+
+        // 商品一覧ページにリダイレクト
+        return redirect()->route('products.index')->with('success', '商品が削除されました');
     }
 }

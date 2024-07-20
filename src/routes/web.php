@@ -27,3 +27,4 @@ Route::get('/products/{id}', [ProductController::class, 'detail'])->name('produc
 Route::post('/products/register', [ProductController::class, 'register'])->name('products.register');
 Route::put('/products/{product_id}/update', [ProductController::class, 'update'])->name('products.update');
 Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
+Route::delete('/products/{product_id}/delete', [ProductController::class, 'destroy'])->name('products.delete');

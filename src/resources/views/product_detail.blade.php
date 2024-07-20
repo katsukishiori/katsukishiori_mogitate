@@ -2,6 +2,9 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/product_detail.css') }}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
+
+
 @endsection
 
 @section('content')
@@ -74,11 +77,30 @@
             </div>
 
             <div class="button-container">
-                <button type="button" class="form-btn__back" onclick="history.back()">戻る</button>
-                <input type="submit" class="form-btn" value="変更を保存" />
-            </div>
+                <div class="button-group">
+                    <button type="button" class="form-btn__back" onclick="history.back()">戻る</button>
+                    <input type="submit" class="form-btn" value="変更を保存" />
+                </div>
+        </form>
+        <form action="{{ route('products.delete', ['product_id' => $product->id]) }}" method="POST" style="display:inline;">
+            @csrf
+            @method('DELETE')
+            <button type="submit" class="delete-btn">
+                <i class="fa-solid fa-trash-can"></i>
+            </button>
         </form>
     </div>
+
+
+    </div>
+
+    <script>
+        document.querySelector('.delete-btn').addEventListener('click', function() {
+            if (confirm('本当に削除しますか？')) {
+                document.getElementById('delete-form').submit();
+            }
+        });
+    </script>
 
 </body>
 @endsection

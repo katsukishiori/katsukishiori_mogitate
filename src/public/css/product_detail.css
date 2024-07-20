@@ -134,8 +134,16 @@ input[type=checkbox] {
 
 .button-container {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 30px;
+  margin-bottom: 50px;
+}
+
+.button-group {
+  display: flex;
   gap: 20px;
-  justify-content: center;
+  margin: 0 auto;
 }
 
 .form-btn__back {
@@ -144,7 +152,6 @@ input[type=checkbox] {
   justify-content: center;
   border-radius: 6px;
   padding: 5px 10px;
-  margin-top: 15px;
   width: 180px;
   height: 40px;
   font-weight: bold;
@@ -163,7 +170,6 @@ input[type=checkbox] {
   justify-content: center;
   border-radius: 6px;
   padding: 5px 10px;
-  margin-top: 15px;
   width: 180px;
   height: 40px;
   font-weight: bold;
@@ -180,4 +186,16 @@ input[type=checkbox] {
 
 .form-btn:hover {
   background-color: #e2c350;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.delete-btn .fa-trash-can {
+  color: red;
+  font-size: 20px;
 }
