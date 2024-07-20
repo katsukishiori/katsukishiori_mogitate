@@ -17,8 +17,8 @@
             <div class="product-top">
                 <a class="product-list" href="/products">商品一覧</a> > {{ $product->name }}
             </div>
-            <div class="products">
 
+            <div class="products">
                 <div class="products__image">
                     <img src="{{ asset('storage/images/' . $product->image) }}" alt="{{ $product->name }}の画像">
                     <input type="file" name="document" class="form-control" value="{{ old('image') }}" />
@@ -27,8 +27,8 @@
                         {{ $message }}
                         @enderror
                     </div>
-
                 </div>
+
                 <div class="products__container">
                     <div class="form-item">
                         <p class="form-item-label">商品名</p>
@@ -39,6 +39,7 @@
                             @enderror
                         </div>
                     </div>
+
                     <div class="form-item">
                         <p class="form-item-label">値段</p>
                         <input type="text" name="price" class="form-item-input" value="{{ $product->price }}" />
@@ -48,8 +49,8 @@
                             @enderror
                         </div>
                     </div>
-                    <div class="form-item">
 
+                    <div class="form-item">
                         <p class="form-item-label">季節</p>
                         <div class="checkbox-group">
                             @foreach(['春', '夏', '秋', '冬'] as $season)
@@ -63,6 +64,7 @@
                             </div>
                         </div>
                     </div>
+
                 </div>
             </div>
 
@@ -82,6 +84,11 @@
                     <input type="submit" class="form-btn" value="変更を保存" />
                 </div>
         </form>
+
+        @if (session('errors'))
+        <!-- エラーが存在するため、削除ボタンを表示しない -->
+        @else
+        <!-- エラーが存在しない場合 -->
         <form action="{{ route('products.delete', ['product_id' => $product->id]) }}" method="POST" style="display:inline;">
             @csrf
             @method('DELETE')
@@ -89,9 +96,9 @@
                 <i class="fa-solid fa-trash-can"></i>
             </button>
         </form>
+        @endif
+
     </div>
-
-
     </div>
 
     <script>
