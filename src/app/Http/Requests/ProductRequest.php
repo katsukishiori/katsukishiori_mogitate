@@ -23,21 +23,24 @@ class ProductRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        // 基本のバリデーションルール
+        $rules = [
             'name' => ['required'],
-            'price' => ['required', 'numeric', 'between:0,10000',],
+            'price' => ['required', 'numeric', 'between:0,10000'],
             'season' => ['required'],
             'description' => ['required', 'max:120'],
         ];
 
         // フォームのメソッドに応じて画像フィールドのバリデーションを追加
         if ($this->isMethod('post')) {
-            $rules['document'] = ['required', 'mimes:jpeg,png']; // 新規作成時には必須
+            // 新規作成時には画像が必須
+            $rules['document'] = ['required', 'mimes:jpeg,png'];
         } elseif ($this->isMethod('put') || $this->isMethod('patch')) {
-            $rules['document'] = ['nullable', 'mimes:jpeg,png']; // 更新時には任意
+            // 更新時には画像は任意
+            $rules['document'] = ['nullable', 'mimes:jpeg,png'];
         }
 
-    return $rules;
+        return $rules;
     }
 
     public function messages()

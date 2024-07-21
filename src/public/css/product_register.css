@@ -42,10 +42,12 @@ body {
   color: red;
 }
 
+/* チェックボックス非表示 */
 input[type=checkbox] {
   display: none;
 }
 
+/* チェックボックスがチェックされていないときのボタンのスタイル */
 .label_test:after {
   position: absolute;
   content: "";
@@ -55,37 +57,41 @@ input[type=checkbox] {
   margin: -10px 0 0 -2px;
   width: 17px;
   height: 17px;
-  background:  #4B4B4B;
+  background-color: #fff;
+  border: 1px solid #4B4B4B;
   border-radius: 50%;
+  z-index: 1;
 }
 
+/* チェックボックスのラベル */
 .label_test {
   position: relative;
   padding: 0 0 0 40px;
 }
 
-.label_test:after, .label_test:before{
-  position: absolute;
-  content: "";
-  display: block;
-  top: 50%;
-}
-
-/*チェックマーク*/
+/* チェックマークのスタイル */
 .label_test:before {
+  content: "";
+  position: absolute;
+  top: 40%;
   left: 20px;
-  margin-top: -7px;
+  transform: translateY(-50%) rotate(45deg);
   width: 4px;
   height: 7px;
   border-right: 1px solid #fff;
   border-bottom: 1px solid #fff;
-  transform: rotate(45deg);
+  background: none;
   opacity: 0;
-  z-index: 1; /* 前面に持ってくる */
+  z-index: 2;
 }
 
-/*チェックボックスがチェックされた時に動作する内容*/
-  input[type=checkbox]:checked + .label_test:before {
+/* チェックボックスがチェックされたときのボタンのスタイル */
+input[type=checkbox]:checked + .label_test:after {
+  background-color: #4B4B4B;
+}
+
+/* チェックボックスがチェックされたときのチェックマーク */
+input[type=checkbox]:checked + .label_test:before {
   opacity: 1;
 }
 
