@@ -65,6 +65,7 @@ storageフォルダに保存した画像をpublicフォルダを通じてアク�
    
 
 ### 5.以下の URL にアクセスし、トップページを表示します。  
-http://localhost/  
+http://localhost/products  
+
     
 
