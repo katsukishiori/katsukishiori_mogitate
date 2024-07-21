@@ -22,6 +22,14 @@ body {
   font-size: 25px;
 }
 
+.container-title.has-add-button {
+  justify-content: space-between; /* ボタンがある場合、h1とボタンを両端に配置 */
+}
+
+.container-title.no-add-button {
+  justify-content: flex-start; /* ボタンがない場合、h1を左寄せ */
+}
+
 .add__button {
   margin-left: auto;
 }
@@ -196,7 +204,6 @@ p.text {
   border-radius: 30px;
 }
 
-/* モーダルのコンテンツスタイル */
 .modal-content {
   display: flex;
   align-items: center;
@@ -222,7 +229,6 @@ p.text {
 
 .close:hover {
   background-color: #E0E0E0;
-  color: #333333;
 }
 
 .select-wrapper {

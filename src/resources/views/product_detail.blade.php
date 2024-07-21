@@ -86,9 +86,8 @@
         </form>
 
         @if (session('errors'))
-        <!-- エラーが存在するため、削除ボタンを表示しない -->
+
         @else
-        <!-- エラーが存在しない場合 -->
         <form action="{{ route('products.delete', ['product_id' => $product->id]) }}" method="POST" style="display:inline;">
             @csrf
             @method('DELETE')

@@ -7,7 +7,7 @@
 @section('content')
 
 <body>
-    <div class="container-title">
+    <div class="container-title {{ empty($search) ? 'has-add-button' : 'no-add-button' }}">
         <h1>
             @if(isset($search) && $search != '')
             "{{ $search }}"の 商品一覧
