@@ -68,33 +68,36 @@
                 </div>
             </a>
             @endforeach
+            <div class="main-contents__bottom">
+                @if(empty($search))
+                <div class="pagination">
+                    @if ($products->onFirstPage())
+                    <span class="arrow">&lt;</span>
+                    @else
+                    <a href="{{ $products->previousPageUrl() }}" rel="prev" class="arrow">&lt;</a>
+                    @endif
+
+                    @for ($i = 1; $i <= $products->lastPage(); $i++)
+                        @if ($i == $products->currentPage())
+                        <span class="active">{{ $i }}</span>
+                        @else
+                        <a href="{{ $products->url($i) }}">{{ $i }}</a>
+                        @endif
+                        @endfor
+
+                        @if ($products->hasMorePages())
+                        <a href="{{ $products->nextPageUrl() }}" rel="next" class="arrow">&gt;</a>
+                        @else
+                        <span class="arrow">&gt;</span>
+                        @endif
+
+                </div>
+                @endif
+            </div>
         </div>
     </div>
 
-    @if(empty($search))
-    <div class="pagination">
-        @if ($products->onFirstPage())
-        <span class="arrow">&lt;</span>
-        @else
-        <a href="{{ $products->previousPageUrl() }}" rel="prev" class="arrow">&lt;</a>
-        @endif
 
-        @for ($i = 1; $i <= $products->lastPage(); $i++)
-            @if ($i == $products->currentPage())
-            <span class="active">{{ $i }}</span>
-            @else
-            <a href="{{ $products->url($i) }}">{{ $i }}</a>
-            @endif
-            @endfor
-
-            @if ($products->hasMorePages())
-            <a href="{{ $products->nextPageUrl() }}" rel="next" class="arrow">&gt;</a>
-            @else
-            <span class="arrow">&gt;</span>
-            @endif
-
-    </div>
-    @endif
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
