@@ -24,9 +24,9 @@ class ProductController extends Controller
     }
 
     // 商品詳細表示
-    public function detail($id)
+    public function detail($product_id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::findOrFail($product_id);
 
         // product_idに関連するすべてのseason_idを取得
         $product_season = ProductSeason::where('product_id', $product->id)->pluck('season_id')->toArray();
