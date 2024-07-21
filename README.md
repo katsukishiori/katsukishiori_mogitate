@@ -15,7 +15,7 @@ phpMyAdmin:http://localhost:8080/
 ## 使用技術(実行環境)  
 ・PHP:   
 ・MySQL: 
-・Laravel:     
+・Laravel:8.83.27     
 
 ## ER図  
 <img width="621" alt="スクリーンショット 2024-07-18 14 19 02" src="https://github.com/user-attachments/assets/435c6f5c-419c-427f-b2bb-c93745167d95">
