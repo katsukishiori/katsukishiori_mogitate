@@ -87,23 +87,56 @@ h2 {
   background-color: #D7B63C;
 }
 
-.form-choice {
+.form-select {
   width: 90%;
   padding: 10px 5px;
   font-size: 15px;
   color: #DCDCDC;
   border: 1px solid #ccc;
   border-radius: 5px;
+  display: inline-flex;
+  align-items: center;
+  position: relative;
 }
 
-.form-choice.selected {
+.form-select.selected {
   color: #787878;
 }
 
+.select-box {
+  display: inline-flex;
+  align-items: center;
+  position: relative;
+}
+
+.select-box::after {
+  position: absolute;
+  right: 15px;
+  width: 10px;
+  height: 7px;
+  background-color: #BCB2A7;
+  clip-path: polygon(0 0, 100% 0, 50% 100%);
+  content: '';
+  pointer-events: none;
+}
+
+.select-box select {
+  appearance: none;
+  min-width: 230px;
+  height: 2.8em;
+  padding: .4em calc(.8em + 30px) .4em .8em;
+  border: 1px solid #d0d0d0;
+  border-radius: 3px;
+  background-color: #fff;
+  color:#DCDCDC;
+  font-size: 1em;
+  cursor: pointer;
+}
+
 .line {
-border: 1px solid #DCDCDC;
-margin-top: 20px;
-width: 90%;
+  border: 1px solid #DCDCDC;
+  margin-top: 20px;
+  width: 90%;
 }
 
 .main-contents {
@@ -234,12 +267,3 @@ p.text {
 .select-wrapper {
   position: relative;
 }
-
-
-
-
-
-
-
-
-

@@ -33,11 +33,13 @@
                 <h2>価格順で表示</h2>
 
                 <div class="select-wrapper">
-                    <select class="form-choice" id="sort-select" name="sort_by">
-                        <option value="" disabled selected>価格で並べ替え</option>
-                        <option value="high_to_low" {{ request('sort_by') == 'high_to_low' ? 'selected' : '' }}>高い順に表示</option>
-                        <option value="low_to_high" {{ request('sort_by') == 'low_to_high' ? 'selected' : '' }}>安い順に表示</option>
-                    </select>
+                    <label class="select-box">
+                        <select class="form-select" id="sort-select" name="sort_by">
+                            <option value="" disabled selected>価格で並べ替え</option>
+                            <option value="high_to_low" {{ request('sort_by') == 'high_to_low' ? 'selected' : '' }}>高い順に表示</option>
+                            <option value="low_to_high" {{ request('sort_by') == 'low_to_high' ? 'selected' : '' }}>安い順に表示</option>
+                        </select>
+                    </label>
 
                     <div class="line"></div>
 
